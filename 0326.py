@@ -48,9 +48,31 @@ def bfs(graph, node, visited): # node : int
             if not (visited[i]):
                 # 안방문한걸 알았으므로 방문한거니까 리스트 값 바꾸기
                 visited[i] = True
-                # 방문한 노드는 큐 뒤에 추가 -> 이제 얘네의 연접 노드를 봐야함
+                # 방문한 노드는 큐 뒤에 추가 -> 다음 i 보고 나서, 방문한 노드들의 연접 노드를 봐야함
                 queue.append(i) 
 
 
 bfs(graph, 1, visited)
+    
+#DFS
+'''
+깊이 우선 탐색
+해당 분기를 우선적으로 완벽하게 탐색
+
+Method: stack(list)
+'''
+
+def dfs(graph, node, visited): # node : int
+    # 맨 처음 넣을 노드번호를 시작으로 방문 처리
+    # visited 리스트는 탐색한 결과 저장 리스트 --> 얘는 다시는 보지 않을 친구들
+    visited[node] = True
+    print('visited', node)
+
+    # 방문한 stack 구조를 재귀로 풀기 가능
+    # node의 연접 노드: i
+    for i in graph[node]:
+        if not visited[i]:
+            bfs(graph, i, visited)
+        
+dfs(graph, 1, visited)
     
